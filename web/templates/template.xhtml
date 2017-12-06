@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
     <f:view encoding="ISO-8859-1" contentType="text/html">
         <h:head>
-            <title><ui:insert name="titulo"> Coloque o título aqui </ui:insert></title>
+            <title><ui:insert name="titulo"> Projeto Final </ui:insert></title>
             <h:outputStylesheet library="css" name="estilos.css"/>
             <h:outputScript library="js" name="scripts.js"/>
         </h:head>
@@ -19,8 +19,7 @@
                         <p:submenu label="Cadastros">
                             <p:column>
                                 <p:submenu label="Básicos">
-                                    <p:menuitem action="#{controleFormato.listar()}" ajax="false" value="Manutenção de Formatos"/>
-                                    <p:menuitem action="#{controleIdioma.listar()}" ajax="false" value="Manutenção de Idiomas"/>
+
                                     <p:menuitem action="#{controleLivro.listar()}" ajax="false" value="Manutenção de Livros"/>
                                     <p:menuitem action="#{controleLivraria.listar()}"
                                                 ajax="false"
@@ -28,6 +27,15 @@
                                 </p:submenu>
                             </p:column>
                         </p:submenu>
+                        <p:submenu label="Relatórios">
+                            <p:column>
+                                <p:submenu label="Livraria">
+                                    <p:menuitem action="#{controleLivraria.imprimeProdutos()}"
+                                                value="Livrarias"
+                                                ajax="false" target="_blank"/>                                      
+                                </p:submenu>
+                            </p:column>
+                        </p:submenu> 
                     </p:megaMenu>
                 </h:form>
                               
