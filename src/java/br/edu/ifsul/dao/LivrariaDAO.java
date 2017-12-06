@@ -5,22 +5,18 @@
  */
 package br.edu.ifsul.dao;
 
-import br.edu.ifsul.jpa.EntityManagerUtil;
-import br.edu.ifsul.modelo.Autor;
-import br.edu.ifsul.util.Util;
+import br.edu.ifsul.modelo.Livraria;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
 
 /**
  *
  * @author henri
  */
-public class AutorDAO<T> extends DAOGenerico<Autor> implements Serializable {
+public class LivrariaDAO<T> extends DAOGenerico<Livraria> implements Serializable {
     
-    public AutorDAO(){
+    public LivrariaDAO(){
         super();
-        classePersistente = Autor.class;
+        classePersistente = Livraria.class;
         ordem = "nome";
     }
 

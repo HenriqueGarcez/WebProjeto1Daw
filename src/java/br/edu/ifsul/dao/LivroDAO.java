@@ -16,81 +16,15 @@ import javax.persistence.EntityManager;
  *
  * @author henri
  */
-public class LivroDAO implements Serializable {
+public class LivroDAO<T> extends DAOGenerico<Livro> implements Serializable {
     
-    private String mensagem = "";
-    private EntityManager em;
+    private String ordem = "ISBN";
     
     public LivroDAO(){
-    
-        em = EntityManagerUtil.getEntityManager();
+        super();
+        classePersistente = Livro.class;
+        ordem = "titulo";
     }
     
-    public List<Livro> getLista(){
-    
-        return em.createQuery("from Livro order by titulo").getResultList();
-    }
-    
-    public boolean salvar(Livro obj){
-    
-        try{
-           em.getTransaction().begin();
-           if(obj.getISBN()== null)
-               em.persist(obj);
-           else
-               em.merge(obj);
-           em.getTransaction().commit();
-           mensagem = "Objeto persistido com sucesso!";
-           return true;
-        }catch (Exception e){
-           if( em.getTransaction().isActive() == false)
-               em.getTransaction().begin();
-           em.getTransaction().rollback();
-           mensagem = "Erro ao presistir objeto" +
-                   Util.getMensagemErro(e);
-           return false;
-        }
-        
-    }
-    
-    public boolean remover(Livro obj){
-    
-        try{
-           em.getTransaction().begin();
-           em.remove(obj);
-           em.getTransaction().commit();
-           mensagem = "Objeto removido com sucesso!";
-           return true;
-        }catch (Exception e){
-           if( em.getTransaction().isActive() == false)
-               em.getTransaction().begin();
-           em.getTransaction().rollback();
-           mensagem = "Erro ao remover objeto" +
-                   Util.getMensagemErro(e);
-           return false;
-        }
-        
-    }
-    
-    public Livro localizar(String isbn){
-    
-        return em.find(Livro.class, isbn);
-    }
 
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public EntityManager getEm() {
-        return em;
-    }
-
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
-    
 }
